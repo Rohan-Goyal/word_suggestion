@@ -59,7 +59,7 @@ inputword = argv[2].lower()
 lev_weight_param = float(argv[3].strip()) if len(argv) > 3 else 0.42
 # Variables introduced globally, to make it easier to handle parameters
 # Lev_weighting decides how much to weight the levenshtein distance when scoring possibilities. 
-# Explained more thoroughly in README and in line 89
+# Explained more thoroughly in README and in line 101
 
 
 def scale_freq(freq):
