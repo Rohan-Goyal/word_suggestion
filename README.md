@@ -1,5 +1,5 @@
-# word_suggestion
-Reads a list of words and frequencies from a CSV, and uses that to suggest corrections for misspelled words
+# Word Suggestion
+A primitive autocorrect mechanism. Reads a list of words and frequencies from a CSV, and uses that to suggest the 5 most likely corrections for misspelled words
 
 ## Example 
 
@@ -20,6 +20,10 @@ You, 200
 ```hello, hi, how, world, are```
 
 ## Running
+Use chmod to make the file executable and run `./word_suggestion.py [dictionaryname.csv] [misspelled word]`
+Alternatively, don't use chmod and instead run `python3 ./word_suggestion.py [dictionaryname.csv] [misspelled word]`
+
+
 
 ## Notes
 Uses the external python-Levenshtein library:  https://pypi.org/project/python-Levenshtein/
