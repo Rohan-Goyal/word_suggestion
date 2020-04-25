@@ -20,8 +20,8 @@ You, 200
 ```hello, hi, how, world, are```
 
 ## Running
-Use chmod to make the file executable and run `./word_suggestion.py [dictionaryname.csv] [misspelled word]`
-Alternatively, don't use chmod and instead run `python3 ./word_suggestion.py [dictionaryname.csv] [misspelled word]`
+- Use chmod to make the file executable and run `./word_suggestion.py [dictionaryname.csv] [misspelled word]`
+- Alternatively, don't use chmod and instead run `python3 ./word_suggestion.py [dictionaryname.csv] [misspelled word]`
 
 
 
