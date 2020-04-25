@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # Tested on Anaconda Python 3.7.3 on Manjaro Linux
 """
-Goal: Given a list of words (say dictionary) in a csv file along with its frequency. Take a word as input and suggest five closest words from the dictionary sorted in order of relevance.
+Goal: Given a list of words (say dictionary) in a csv file along with its frequency. 
+Take a word as input and suggest five closest words from the dictionary sorted in order of relevance.
 Assume that the user is trying to type a dictionary word which they misspelled, and you have to suggest the correct word. `
 Language: Any
 Example Input file:
@@ -57,7 +58,8 @@ dictionary = clean_dict(csv_to_matrix(argv[1]))
 inputword = argv[2].lower()
 lev_weight_param = float(argv[3].strip()) if len(argv) > 3 else 0.42
 # Variables introduced globally, to make it easier to handle parameters
-# Lev_weighting decides how much to weight the levenshtein distance when scoring possibilities. Explained more thoroughly in README and in line 89
+# Lev_weighting decides how much to weight the levenshtein distance when scoring possibilities. 
+# Explained more thoroughly in README and in line 89
 
 
 def scale_freq(freq):
@@ -79,7 +81,9 @@ def total_score(inputword, dictword, lev_weighting=lev_weight_param):
 
     :param inputword: The incorrect word input via cli, which we want to find a match for
     :param dictword: An array, first element being a word/string and the second an integer representing its frequency
-    :param lev_weighting: If you want the score to weight the Levenshtein distance higher or lower, include this parameter. Defaults to 0.42. Setting it to 1 means to disregard the frequency completely, and setting it to -1 means to disregard Lev distance completely
+    :param lev_weighting: If you want the score to weight the Levenshtein distance higher or lower. Defaults to 0.42. 
+    Setting it to 1 means to disregard the frequency completely, and setting it to -1 means to disregard Lev distance completely
+    
     :returns: The total, weighted "likelihood" that the given dictionary word was intended
     :rtype: A float between -1 and 1, inclusive
 
@@ -95,16 +99,23 @@ def total_score(inputword, dictword, lev_weighting=lev_weight_param):
 # Lev distance is negative, as we want to minimise it
 """
 A note on the lev_weighting parameter:
-In general, giving both Levenshtein distance and frequency equal weight leads to results which conflict with common sense. To solve that, I introduced a parameter lev_weighting above.
-It basically increases the significance of the Levenshtein distance in the total score, and thus leads to words with lower levenshtein distance being higher ranked in general.
+In general, giving both Levenshtein distance and frequency equal weight leads to results which conflict with common sense. 
+To solve that, I introduced a parameter lev_weighting above.
+
+It basically increases the significance of the Levenshtein distance in the total score, 
+and thus leads to words with lower levenshtein distance being higher ranked in general.
+
 If the results given seem strange, the parameter can be adjusted as an optional command-line argument.
 Eg: ./word_suggestion.py dict.csv hellp 0
-It defaults to 0.42 partly because that yielded results most in line with common sense, and partly because 42 is the answer to life, the universe, and everything.
+
+It defaults to 0.42 partly because that yielded results most in line with common sense, 
+and partly because 42 is the answer to life, the universe, and everything.
 """
 
 
 def ranking(inputword, dictionary):
-    """Given an input word, it ranks every word in the dictionary by how likely it is that that was the intended word (a function of the frequency and levenshtein distance)
+    """Given an input word, ranks every word in the dictionary by likelihood that that was the intended word 
+    (a function of the frequency and levenshtein distance)
 
     :param inputword: input via CLI
     :param dictionary: The dictionary of words and freqs to compare this to.
